@@ -4,18 +4,14 @@ import streamlit as st
 from vaderSentiment.vaderSentiment import SentimentIntensityAnalyzer
 from sentence_transformers import SentenceTransformer
 
-# ---------------------------
 # Cached model loader
-# ---------------------------
 @st.cache_resource
 def load_models():
     return SentimentIntensityAnalyzer(), SentenceTransformer('all-MiniLM-L6-v2')
 
 sentiment_analyzer, semantic_model = load_models()
 
-# ---------------------------
 # Compact rubric & weights
-# ---------------------------
 WEIGHTS = {
     "salutation": 5,
     "keywords": 20,
@@ -44,9 +40,8 @@ GOOD_KEYWORDS = {
 }
 FILLERS = ["um", "uh", "like", "you know", "so", "actually", "basically", "right", "i mean", "well", "kinda", "sort of", "okay", "hmm", "ah"]
 
-# ---------------------------
+
 # Helpers (compact)
-# ---------------------------
 def _clean(text):
     return re.sub(r'\s+', ' ', text.strip())
 
@@ -137,9 +132,8 @@ def speech_rate_score(text, duration_sec):
     if 60 <= wpm < 80 or 170 < wpm <= 190: return 6, f"Acceptable speech rate: {wpm:.1f} WPM"
     return 4, f"Speech rate: {wpm:.1f} WPM (consider adjusting pace)"
 
-# ---------------------------
+
 # Main analyzer (compact orchestration)
-# ---------------------------
 def analyze_transcript(transcript, duration_sec=52):
     text = _clean(transcript)
     results = {
@@ -154,10 +148,9 @@ def analyze_transcript(transcript, duration_sec=52):
     results["criteria_scores"].append({"criterion": "Salutation", "score": s_score, "max_score": WEIGHTS["salutation"], "weight": WEIGHTS["salutation"], "feedback": s_fb})
     results["overall_score"] += (s_score / 5) * WEIGHTS["salutation"]
 
-    # keywords (must-have categories -> distributed across weight)
+    # keywords 
     found_must = count_category_matches(text, MUST_KEYWORDS)
     must_pts = min(len(found_must) * (WEIGHTS["keywords"] / len(MUST_KEYWORDS)), WEIGHTS["keywords"])
-    # good-to-have bonus (cap 5)
     found_good = count_category_matches(text, GOOD_KEYWORDS)
     bonus = min(len(found_good), 5)
     kw_fb = f"Found must-have: {', '.join(found_must) or 'none'}; good extras: {', '.join(found_good) or 'none'}"
@@ -201,13 +194,11 @@ def analyze_transcript(transcript, duration_sec=52):
     results["overall_score"] += sent_pts
 
     # Normalize overall to 0-100 (WEIGHTS total is 100 when each criterion sum equals its weight)
-    # We accumulated scores mapped to each criterion max, so overall_score already on 0-100 scale if each criterion max was used.
     results["overall_score"] = float(min(max(results["overall_score"], 0), 100))
     return results
 
-# ---------------------------
-# Streamlit UI (kept structure unchanged)
-# ---------------------------
+
+# Streamlit UI
 st.set_page_config(page_title="Transcript Scorer", page_icon="📝", layout="wide")
 
 col1, col2 = st.columns([0.1, 0.9])
