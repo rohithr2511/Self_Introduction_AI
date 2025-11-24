@@ -203,7 +203,7 @@ st.set_page_config(page_title="Transcript Scorer", page_icon="📝", layout="wid
 
 col1, col2 = st.columns([0.1, 0.9])
 with col1:
-    st.image("assests\Gemini_Generated_Image_8p83py8p83py8p83.png", use_container_width=True)
+    st.image("assests/Gemini_Generated_Image_8p83py8p83py8p83.png", use_container_width=True)
 with col2:
     st.title("Self-Introduction Transcript Scorer")
 
