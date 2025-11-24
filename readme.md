@@ -25,7 +25,7 @@ https://selfintroductionai-ez9xzwbuk2ddntlyufjbzq.streamlit.app/
 
 ## 🛠 Installation & Setup
 1️⃣ Clone the repository
-git clone https://github.com/your-username/Self_Introduction_AI.git
+git clone https://github.com/rohithr2511/Self_Introduction_AI.git
 cd Self_Introduction_AI
 
 2️⃣ Create a virtual environment (recommended)
