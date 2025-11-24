@@ -1,0 +1,7 @@
+streamlit
+vaderSentiment
+sentence-transformers
+scikit-learn
+numpy
+torch      # sentence-transformers often requires torch; include if needed
+gunicorn   # not used for streamlit but harmless
