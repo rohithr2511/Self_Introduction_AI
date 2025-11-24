@@ -1,7 +1,5 @@
 # 📝 Self-Introduction Transcript Scorer
 
-![App Banner](assets/Gemini_Generated_Image.png)
-
 An intelligent, NLP-powered Streamlit application designed to evaluate and score self-introduction transcripts. This tool uses sentiment analysis, vocabulary diversity metrics, and pattern matching to provide immediate, detailed feedback to students or individuals practicing their introductions.
 
 ## 🚀 Features
@@ -17,18 +15,13 @@ An intelligent, NLP-powered Streamlit application designed to evaluate and score
     * Content Completeness (Name, Age, Hobbies, Family)
 * **Interactive UI:** Built with Streamlit for a responsive, user-friendly experience.
 
-## 📂 Project Structure
 
-```text
-Self_Introduction_AI/
-│
-├── app.py                     # Main Streamlit Application logic
-├── requirements.txt           # Python dependencies
-├── assets/
-│   └── Gemini_Generated_Image.png   # App Banner
-├── README.md                  # Project Documentation
-└── .streamlit/
-    └── config.toml            # UI Configuration
+## Live Demo
+
+🔗 Deployed on Streamlit Cloud:
+
+https://selfintroductionai-ez9xzwbuk2ddntlyufjbzq.streamlit.app/
+
 
 ## 🛠 Installation & Setup
 1️⃣ Clone the repository
@@ -83,10 +76,16 @@ Grades:
 Below 55: Needs Improvement
 
 
-## 💡 Acknowledgments
+## 📂 Project Structure
 
-SentenceTransformers by UKP Lab
+```text
+Self_Introduction_AI/
+│
+├── app.py                     # Main Streamlit Application logic
+├── requirements.txt           # Python dependencies
+├── assets/
+│   └── Gemini_Generated_Image.png   # App Banner
+├── README.md                  # Project Documentation
+└── .streamlit/
+    └── config.toml            # UI Configuration
 
-VADER Sentiment Analysis
-
-Streamlit for rapid UI deployment
